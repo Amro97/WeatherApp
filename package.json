@@ -19,6 +19,8 @@
   "dependencies": {
     "express": "^4.17.1",
     "mongoose": "^5.11.1",
+    "request": "^2.88.2",
+    "request-promise": "^4.2.6",
     "urllib": "^2.36.1"
   }
 }
