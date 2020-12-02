@@ -13,7 +13,7 @@ router.get('/city/:cityName', async function (req, res) {
         temperature: Math.floor(results.data.main.temp),
         condition: results.data.weather[0].description,
         conditionPic: conditionPic,
-        favourite: false
+        fav: false
     })
     res.send(city)
 })
@@ -29,7 +29,8 @@ router.post('/city', (req, res) => {
         name: info.name,
         temperature: info.temperature,
         condition: info.condition,
-        conditionPic: info.conditionPic
+        conditionPic: info.conditionPic,
+        fav: true
     })
     const promise = city.save()
     promise.then(res.send(city))

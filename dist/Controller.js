@@ -9,30 +9,25 @@ const loadPage = async function () {
 const handleSearch = function () {
     const cityName = $('#city-input').val()
     $('#city-input').val('')
-    manager.getCityData(cityName).then(function () {
-        loadPage()
+    manager.getCityData(cityName).then(() => {
+        renderer.renderData(manager.cityData)
     })
 }
 
-$("#search-btn").on('click', function () {
-    handleSearch()
+$('#cities').on('click', '.add-btn', async function () {
+    const cityName = $(this).closest('.city').data().name
+    $(this).removeClass("add-btn")
+    $(this).addClass("remove-btn")
+    $(this).text("-")
+    await manager.saveCity(cityName)
 })
 
-$('#cities').on('click', 'button', async function () {
+$('#cities').on('click', '.remove-btn', async function () {
     const cityName = $(this).closest('.city').data().name
-    if ($(this).data().favourite === false) {
-        $(this).data().favourite = true
-        $(this).removeClass("add-btn")
-        $(this).addClass("remove-btn")
-        $(this).text("-")
-        await manager.saveCity(cityName)
-    } else {
-        $(this).data().favourite = false
-        $(this).removeClass("remove-btn")
-        $(this).addClass("add-btn")
-        $(this).text("+")
-        await manager.removeCity(cityName)
-    }
+    $(this).removeClass("remove-btn")
+    $(this).addClass("add-btn")
+    $(this).text("+")
+    await manager.removeCity(cityName)
 })
 
 loadPage()
