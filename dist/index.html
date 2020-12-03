@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <div id='container'>
+        <form id='search-div'>
+            <input type='text' id='city-input' placeholder='Search for a city'>
+            <button id='search-btn' onclick="handleSearch()"><i class="fa fa-search"></i></button>
+        </form>
+        <div id='cities'></div>
+    </div>
+
+    <script id="city-temp" type="text/x-handlebars-template">
+
+        {{#each cities}}
+            <div class = 'city' data-name = "{{this.name}}">
+                {{#if this.fav}}
+                    <button class='btn remove-btn' data-favourite={{this.fav}}>-</button>
+                    {{else}}
+                    <button class='btn add-btn' data-favourite={{this.fav}}>+</button>
+                {{/if}}
+                <span class='city-name'>{{this.name}}</span>
+                <span class='temperature'>{{this.temperature}}&#8451</span>
+                <div class = 'condition'>
+                    <img class='condition-pic' src={{this.conditionPic}}>
+                    <span class='condition-status'>{{this.condition}}</span>
+                </div>   
+            </div>
+        {{/each}}
+
+    </script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.js"></script>
+    <script src="Model.js"></script>
+    <script src="View.js"></script>
+    <script src="Controller.js"></script>
+</body>
+</html>
