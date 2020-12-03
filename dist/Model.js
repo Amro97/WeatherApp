@@ -16,7 +16,7 @@ class Manager {
 
     async getCityData(cityName) {
         const city = await $.get(`/city/${cityName}`)
-        this.cityData.push(city);
+        this.cityData.push(city)
     }
 
     async removeCity(cityName) {

@@ -6,7 +6,7 @@ const City = require('../models/city')
 
 router.get('/city/:cityName', async function (req, res) {
     const cityName = req.params.cityName;
-    const results = await axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=2c9cc7eeac9c575ec6c7b567e3e599ec`)
+    const results = await axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=fc0190354e5521c435e0ee978a7e05aa`)
     const conditionPic = `http://openweathermap.org/img/wn/${results.data.weather[0].icon}@2x.png`
     const city = new City({
         name: cityName.charAt(0).toUpperCase() + cityName.slice(1),
